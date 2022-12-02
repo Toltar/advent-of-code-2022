@@ -2,6 +2,7 @@ use std::fs::{read_to_string, File};
 use std::io::{BufRead, BufReader};
 
 fn get_total_calories_by_elf(lines: Vec<&str>) -> Vec<i32> {
+    let last_value = *lines.last().unwrap();
     let line_iterator = lines.into_iter();
     let mut current_total = 0;
     let mut total_calories_by_elf = Vec::new();
@@ -11,6 +12,9 @@ fn get_total_calories_by_elf(lines: Vec<&str>) -> Vec<i32> {
             current_total = 0;
         } else {
             current_total += line.parse::<i32>().unwrap();
+            if line == last_value {
+                total_calories_by_elf.push(current_total)
+            }
         }
     });
 
