@@ -1,5 +1,4 @@
-use std::fs::{read_to_string, File};
-use std::io::{BufRead, BufReader};
+use std::fs::read_to_string;
 
 fn get_total_calories_by_elf(lines: Vec<&str>) -> Vec<i32> {
     let last_value = *lines.last().unwrap();
