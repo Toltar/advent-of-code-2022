@@ -1,11 +1,4 @@
-use std::fmt;
 use std::fs::read_to_string;
-struct InvalidInputError;
-impl fmt::Display for InvalidInputError {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "Invalid input")
-    }
-}
 
 #[derive(Eq, PartialEq)]
 enum Plays {
