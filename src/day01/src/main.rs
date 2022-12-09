@@ -7,7 +7,7 @@ fn get_total_calories_by_elf(lines: Vec<&str>) -> Vec<i32> {
     let mut total_calories_by_elf = Vec::new();
     line_iterator.for_each(|line| {
         if line.trim().is_empty() {
-            total_calories_by_elf.push(current_total.clone());
+            total_calories_by_elf.push(current_total);
             current_total = 0;
         } else {
             current_total += line.parse::<i32>().unwrap();
@@ -17,22 +17,21 @@ fn get_total_calories_by_elf(lines: Vec<&str>) -> Vec<i32> {
         }
     });
 
-    return total_calories_by_elf;
+    total_calories_by_elf
 }
 
 fn find_top_three_total(total_by_elf: Vec<i32>) -> i32 {
-    let mut vector_clone = total_by_elf.clone();
+    let mut vector_clone = total_by_elf;
     let len = vector_clone.len();
     vector_clone.sort();
-    let total = vector_clone[len - 1] + vector_clone[len - 2] + vector_clone[len - 3];
-    return total;
+    vector_clone[len - 1] + vector_clone[len - 2] + vector_clone[len - 3]
 }
 
 fn main() {
     let file_path: &str = "./input.txt";
     let read_to_string_result =
         read_to_string(file_path).expect("Should have been able to read the file");
-    let lines: Vec<_> = read_to_string_result.split("\n").collect();
+    let lines: Vec<_> = read_to_string_result.split('\n').collect();
 
     let total_calories_by_elf = get_total_calories_by_elf(lines);
     let max_calories = total_calories_by_elf.iter().max().unwrap();
